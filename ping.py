@@ -14,7 +14,7 @@ response = StringIO.StringIO()
 all = '''
 while True:
     c = pycurl.Curl()
-    c.setopt(c.URL, 'http://localhost:8081/all')
+    c.setopt(c.URL, 'http://localhost:1949/all')
     c.setopt(pycurl.HTTPHEADER, ['X-Postmark-Server-Token: API_TOKEN_HERE', 'Accept: application/json'])
     c.setopt(pycurl.POST, 1)
     data = json.dumps([{"Key": "real", "Val": "24", "File": "ini.ini", "File_type": "ini"}])
