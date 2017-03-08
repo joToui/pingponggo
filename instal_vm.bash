@@ -14,6 +14,9 @@ sudo chmod 644 /etc/apt/sources.list
 sudo apt-get -y update
 sudo apt-get install -y kubelet kubeadm kubectl kubernetes-cni
 #sudo apt-get -y install jenkins
+cat /etc/default/jenkins |  sed -e "s/HTTP_PORT=8080/HTTP_PORT=666/" > /tmp/jenkins
+sudo cp -f /tmp/jenkins /etc/default/jenkins
+sudo /etc/init.d/jenkins restart
 
 sudo apt-get -y install git
 mkdir -p $project_name/ping  
@@ -173,6 +176,7 @@ sudo nohup bash -c "docker run go_revel 2>&1 &"
 echo " image is up .... "
 
 echo "so new image is needed for the go restserver "
+
 
 
 
