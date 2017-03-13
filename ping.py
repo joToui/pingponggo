@@ -38,7 +38,7 @@ while True:
 
 
 while True:
-    url = 'http://localhost:1949/change_this'
+    url = 'http://192.168.65.138:1949/change_this'
     randy_newman = randint(0, 50)  # i find this man random
     file_type = 'JANK'
     if randy_newman > 25:
