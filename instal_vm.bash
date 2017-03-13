@@ -105,7 +105,7 @@ echo "building image .... "
 sudo docker build . -t flask_image
 echo "building image .... "
 echo "running  image .... "
-sudo docker run flask_image -p 1948:1948 --net="host" 2>&1 &
+sudo docker run flask_image -p 0.0.0.0:1948:1948 --net="host" 2>&1 &
 
 echo " image is up .... "
 
@@ -160,7 +160,7 @@ echo "building image .... "
 sudo docker build . -t go_revel
 echo "building image .... "
 echo "running  image .... "
-sudo docker run -it --net="host" --name="revel_instance"  go_revel -p 0.0.0.0:1949:1949 --net="host"  2>&1 &
+sudo docker run -it --net="host" --name="revel_instance2"  go_revel -p 0.0.0.0:1949:1949 --net="host"  2>&1 &
 
 echo " image is up .... "
 
