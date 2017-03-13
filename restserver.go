@@ -2,7 +2,6 @@ package main
 
 import (
     "encoding/json"
-    "fmt"
     "io/ioutil"
     "log"
     "net/http"
@@ -55,27 +54,27 @@ func make_one_Change(Key string, Val string, File string, File_type string) {
 }
 
 func homePage(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "Welcome to the HomePage!")
+    log.Println(w, "Welcome to the HomePage!")
     log.Println("Endpoint Hit: homePage")
 }
 
 func returnArticle(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "returns a specific article")
+    log.Println(w, "returns a specific article")
     log.Println("Endpoint Hit: returnArticle")
 }
 
 func returnAllArticles(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "All Articles")
+    log.Println(w, "All Articles")
     log.Println("Endpoint Hit: returnAllArticles")
 }
 
 func addArticle(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "Adds an article to list of articles")
+    log.Println(w, "Adds an article to list of articles")
     log.Println("Endpoint Hit: addArticle")
 }
 
 func delArticle(w http.ResponseWriter, r *http.Request) {
-    fmt.Fprintf(w, "deletes a specific article")
+    log.Println(w, "deletes a specific article")
     log.Println("Endpoint Hit: delArticle")
 }
 
@@ -168,6 +167,7 @@ func handleRequests() {
     http.HandleFunc("/single", returnArticle)
     http.HandleFunc("/delete", delArticle)
     http.HandleFunc("/add", addArticle)
+    log.Println("\n The server is up ... \n ")
     log.Fatal(http.ListenAndServe(":1949", nil))
 }
 
