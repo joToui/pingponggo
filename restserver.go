@@ -27,24 +27,24 @@ type StatusOk struct {
 type KvFPs []KvFP
 
 func change_ini(Key string, Val string, File string) {
-    fmt.Println(Key)
-    fmt.Println(Val)
-    fmt.Println(File)
-    fmt.Println(" INI file type ..... changing is ok ")
+    log.Println(Key)
+    log.Println(Val)
+    log.Println(File)
+    log.Println(" INI file type ..... changing is ok ")
 
 }
 func change_xml(Key string, Val string, File string) {
-    fmt.Println(Key)
-    fmt.Println(Val)
-    fmt.Println(File)
-    fmt.Println(" XML file type ..... changing is ok ")
+    log.Println(Key)
+    log.Println(Val)
+    log.Println(File)
+    log.Println(" XML file type ..... changing is ok ")
 }
 
 func make_one_Change(Key string, Val string, File string, File_type string) {
-    fmt.Println(Key)
-    fmt.Println(Val)
-    fmt.Println(File)
-    fmt.Println(File_type)
+    log.Println(Key)
+    log.Println(Val)
+    log.Println(File)
+    log.Println(File_type)
     switch File_type {
     case "ini":
         change_ini(Key, Val, File)
@@ -56,27 +56,27 @@ func make_one_Change(Key string, Val string, File string, File_type string) {
 
 func homePage(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "Welcome to the HomePage!")
-    fmt.Println("Endpoint Hit: homePage")
+    log.Println("Endpoint Hit: homePage")
 }
 
 func returnArticle(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "returns a specific article")
-    fmt.Println("Endpoint Hit: returnArticle")
+    log.Println("Endpoint Hit: returnArticle")
 }
 
 func returnAllArticles(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "All Articles")
-    fmt.Println("Endpoint Hit: returnAllArticles")
+    log.Println("Endpoint Hit: returnAllArticles")
 }
 
 func addArticle(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "Adds an article to list of articles")
-    fmt.Println("Endpoint Hit: addArticle")
+    log.Println("Endpoint Hit: addArticle")
 }
 
 func delArticle(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "deletes a specific article")
-    fmt.Println("Endpoint Hit: delArticle")
+    log.Println("Endpoint Hit: delArticle")
 }
 
 func changeThis(rw http.ResponseWriter, req *http.Request) {
@@ -87,7 +87,7 @@ func changeThis(rw http.ResponseWriter, req *http.Request) {
        KvFP{Key: "age", Val: "6", File: "ini.ini", File_type: "ini"},
        KvFP{Key: "real", Val: "24", File: "ini.ini", File_type: "ini"},
     */
-    fmt.Println("start ... ")
+    log.Println("start ... ")
     decoder := json.NewDecoder(req.Body)
     err := decoder.Decode(&kvfps)
     if err != nil {
@@ -98,8 +98,8 @@ func changeThis(rw http.ResponseWriter, req *http.Request) {
         make_one_Change(json1_data.Key, json1_data.Val, json1_data.File, json1_data.File_type)
     }
 
-    fmt.Println(kvfps)
-    fmt.Println("hi ... ")
+    log.Println(kvfps)
+    log.Println("hi ... ")
 
     //////////////////////////////////////////////////////////////////////////////////////////////
     ///
@@ -111,7 +111,7 @@ func changeThis(rw http.ResponseWriter, req *http.Request) {
     //////////////////////////////////////////////////////////////////////////////////////////////
     dicOK := StatusOk{Status: "ok"}
     json.NewEncoder(rw).Encode(dicOK)
-    fmt.Println("hi the function is done ...  ")
+    log.Println("hi the function is done ...  ")
 
     //////////////////////////////////////////////////////////////////////////////////////////////
     ///
@@ -141,23 +141,23 @@ func returnAllinthisServer(rw http.ResponseWriter, req *http.Request) {
 
     file_in_string, err := ioutil.ReadFile("ini.ini")
     if err != nil {
-        fmt.Println(err)
+        log.Println(err)
     }
     lines := strings.Split(string(file_in_string), "\n")
     array_size := len(lines)
     m := make(map[string]string)
-    //fmt.Println(array_size)
+    //log.Println(array_size)
     for i := array_size; i > 0; i-- {
         r, _ := regexp.Compile(`[\s]*=[\s]*`)
         keyval := r.Split(lines[i-1], 2)
         m[keyval[0]] = keyval[1]
-        //fmt.Println(keyval[0])
+        //log.Println(keyval[0])
     }
     for key, val := range m {
         kvfps = append(kvfps, KvFP{Key: key, Val: val, File: "ini.ini", File_type: "ini"})
-        fmt.Println(key + "-->" + val)
+        log.Println(key + "-->" + val)
     }
-    fmt.Println("Endpoint Hit: returnAllinthisServer")
+    log.Println("Endpoint Hit: returnAllinthisServer")
     json.NewEncoder(rw).Encode(kvfps)
 }
 
