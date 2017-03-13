@@ -38,6 +38,10 @@ cp pingponggo-master/restserver.go  revel/.
 cd ping 
 sudo apt install -y docker.io
 
+echo " killing all running docker containers .... "
+sudo  docker kill $(sudo docker ps -q)
+
+
 echo "building Dockerfile .... "
 cat >Dockerfile << DOCFL 
 
@@ -101,28 +105,13 @@ echo "building image .... "
 sudo docker build . -t flask_image
 echo "building image .... "
 echo "running  image .... "
-sudo nohup bash -c "docker run flask_image 2>&1 &"
+sudo docker run flask_image 2>&1 &
 
 echo " image is up .... "
 
 echo "so new image is needed for the go restserver "
 
-
-
-
 ################################################################
-
-
-
-
-
-
-
-
-
-
-
-
 
 cd ..
 mkdir -p revel
@@ -171,7 +160,7 @@ echo "building image .... "
 sudo docker build . -t go_revel
 echo "building image .... "
 echo "running  image .... "
-sudo nohup bash -c "docker run go_revel 2>&1 &"
+sudo docker run go_revel 2>&1 &
 
 echo " image is up .... "
 
