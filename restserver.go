@@ -54,27 +54,27 @@ func make_one_Change(Key string, Val string, File string, File_type string) {
 }
 
 func homePage(w http.ResponseWriter, r *http.Request) {
-    log.Println(w, "Welcome to the HomePage!")
+    frm.Println(w, "Welcome to the HomePage!")
     log.Println("Endpoint Hit: homePage")
 }
 
 func returnArticle(w http.ResponseWriter, r *http.Request) {
-    log.Println(w, "returns a specific article")
+    frm.Println(w, "returns a specific article")
     log.Println("Endpoint Hit: returnArticle")
 }
 
 func returnAllArticles(w http.ResponseWriter, r *http.Request) {
-    log.Println(w, "All Articles")
+    frm.Println(w, "All Articles")
     log.Println("Endpoint Hit: returnAllArticles")
 }
 
 func addArticle(w http.ResponseWriter, r *http.Request) {
-    log.Println(w, "Adds an article to list of articles")
+    frm.Println(w, "Adds an article to list of articles")
     log.Println("Endpoint Hit: addArticle")
 }
 
 func delArticle(w http.ResponseWriter, r *http.Request) {
-    log.Println(w, "deletes a specific article")
+    frm.Println(w, "deletes a specific article")
     log.Println("Endpoint Hit: delArticle")
 }
 
