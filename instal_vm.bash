@@ -160,7 +160,7 @@ echo "building image .... "
 sudo docker build . -t go_revel
 echo "building image .... "
 echo "running  image .... "
-sudo docker run -it --net="host" --name="revel_instance2"  go_revel -p 0.0.0.0:1949:1949 --net="host"  2>&1 &
+sudo docker run -it --net="host" go_revel -p 0.0.0.0:1949:1949 --net="host"  2>&1 &
 
 echo " image is up .... "
 
