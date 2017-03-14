@@ -4,7 +4,7 @@ import (
     "encoding/json"
     "io/ioutil"
     "log"
-    "frm"
+    "fmt"
     "net/http"
     "regexp"
     "strings"
@@ -55,27 +55,27 @@ func make_one_Change(Key string, Val string, File string, File_type string) {
 }
 
 func homePage(w http.ResponseWriter, r *http.Request) {
-    frm.Println(w, "Welcome to the HomePage!")
+    fmt.Println(w, "Welcome to the HomePage!")
     log.Println("Endpoint Hit: homePage")
 }
 
 func returnArticle(w http.ResponseWriter, r *http.Request) {
-    frm.Println(w, "returns a specific article")
+    fmt.Println(w, "returns a specific article")
     log.Println("Endpoint Hit: returnArticle")
 }
 
 func returnAllArticles(w http.ResponseWriter, r *http.Request) {
-    frm.Println(w, "All Articles")
+    fmt.Println(w, "All Articles")
     log.Println("Endpoint Hit: returnAllArticles")
 }
 
 func addArticle(w http.ResponseWriter, r *http.Request) {
-    frm.Println(w, "Adds an article to list of articles")
+    fmt.Println(w, "Adds an article to list of articles")
     log.Println("Endpoint Hit: addArticle")
 }
 
 func delArticle(w http.ResponseWriter, r *http.Request) {
-    frm.Println(w, "deletes a specific article")
+    fmt.Println(w, "deletes a specific article")
     log.Println("Endpoint Hit: delArticle")
 }
 
