@@ -159,9 +159,9 @@ echo "building image .... "
 sudo docker build . -t go_revel
 echo "building image .... "
 echo "running  image .... "
-revel_server_host=$(sudo docker run -itd -p 0.0.0.0:1949:1949 go_revel)
+revel_server_host=$(sudo docker run -itd -p 0.0.0.0:1949:1949 go_revel);
 
-revel_server_host_ip=$(sudo docker inspect --format='{{.NetworkSettings.Networks.bridge.IPAddress}}' $revel_server_host)
+revel_server_host_ip=$(sudo docker inspect --format='{{.NetworkSettings.Networks.bridge.IPAddress}}' $revel_server_host);
 
 sudo docker run -itd  --add-host revel_server_host:$revel_server_host_ip -p 0.0.0.0:1948:1948 flask_image &
 
