@@ -105,7 +105,6 @@ echo "building image .... "
 sudo docker build . -t flask_image
 echo "building image .... "
 echo "running  image .... "
-sudo docker run -p 0.0.0.0:1948:1948 flask_image 2>&1 &
 
 echo " image is up .... "
 
@@ -117,7 +116,7 @@ cd ..
 mkdir -p revel
 cd revel
 echo "building Dockerfile .... "
-cat >Dockerfile << DOCFLG 
+cat >Dockerfile << DOCFLG
 
 FROM ubuntu:14.04
 # Update OS
@@ -160,7 +159,14 @@ echo "building image .... "
 sudo docker build . -t go_revel
 echo "building image .... "
 echo "running  image .... "
-sudo docker run -it  -p 0.0.0.0:1949:1949 go_revel  2>&1 &
+revel_server_host=$(sudo docker run -itd -p 0.0.0.0:1949:1949 go_revel)
+
+revel_server_host_ip=$(sudo docker inspect --format='{{.NetworkSettings.Networks.bridge.IPAddress}}' $revel_server_host
+
+ --add-host db-static:86.75.30.9
+
+sudo docker run -itd  --add-host revel_server_host:$revel_server_host_ip -p 0.0.0.0:1948:1948 flask_image &
+
 
 echo " image is up .... "
 
