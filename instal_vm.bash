@@ -1,4 +1,4 @@
-
+#!/bin/bash
 export project_name='prj_1' 
 sudo apt-get -y install openssh-server
 
